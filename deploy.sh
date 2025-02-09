@@ -185,8 +185,8 @@ find /home/$USERNAME/.config/ | grep '\cbpp' | xargs rm -f
 find /root/.config/ | grep '\cbpp' | xargs rm -f
 
 # Other stuff should do
-wget -qO /etc/preload.conf https://raw.githubusercontent.com/YurinDoctrine/deploy-artix/main/preload/preload.conf
-wget -qO /sbin/preload https://raw.githubusercontent.com/YurinDoctrine/deploy-artix/main/preload/preload
+wget -qO /etc/preload.conf https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload.conf
+wget -qO /sbin/preload https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload
 chmod +x /sbin/preload
 
 echo -e "permit persist :$USERNAME
