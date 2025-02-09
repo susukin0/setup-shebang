@@ -74,18 +74,6 @@ done
 # Root
 [ ! "$ROOT_PASSWORD" ] && ROOT_PASSWORD=$(confirm_password "Password for superuser (will use same for root)")
 
-# Network
-until [ "$SSID" ]; do
-  clear
-  echo -e "Wi-Fi SSID (leave empty for Ethernet)" && read -p $"> " SSID
-  [ ! "$SSID" ] && break
-  until [ "$PSK" ]; do
-    stty -echo
-    echo -e "Password for Wi-Fi" && read -p $"> " PSK
-    stty echo
-  done
-done
-
 # Choose disk
 until [ -e "$DISK" ]; do
   clear
@@ -171,20 +159,11 @@ basestrap /mnt linux-zen linux-zen-headers linux-firmware mkinitcpio
 
 fstabgen -U /mnt >/mnt/etc/fstab
 
-# Save connection
-if [ "$SSID" ]; then
-  echo -e "update_config=1
-ap_scan=1
-fast_reauth=1
-network={
-ssid=\"$SSID\"
-psk=\"$PSK\"
-scan_ssid=1  
-}" >/mnt/etc/wpa_supplicant/wpa_supplicant.conf
-fi
-
 # Chroot
 (INIT="$INIT" PART2="$PART2" ROOT_PASSWORD="$ROOT_PASSWORD" ENCRYPTED="$ENCRYPTED" REGION_CITY="$REGION_CITY" HOST="$HOST" USERNAME="$USERNAME" KEYMAP="$KEYMAP" artix-chroot /mnt /bin/bash -c 'bash <(curl -s https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/deploy.sh); exit')
+
+# Save connection
+cp /etc/wpa_supplicant/wpa_supplicant.conf /mnt/etc/wpa_supplicant/wpa_supplicant.conf
 
 # Perform finish
 swapoff -a
