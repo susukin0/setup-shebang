@@ -568,6 +568,18 @@ Shebang \s \r (\m) (\l) \d \t
 
 EOF
 
+echo -e 'NAME="Shebang Linux"
+PRETTY_NAME="Shebang"
+ID=shebang
+ID_LIKE=artix
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://shebang-linux.github.io/"
+DOCUMENTATION_URL="https://github.com/shebang-linux/shebang/"
+SUPPORT_URL="https://github.com/orgs/shebang-linux/discussions/"
+BUG_REPORT_URL="https://github.com/shebang-linux/shebang/issues/"
+LOGO=shebang-og-logo' >/etc/os-release
+
 for run_script in /etc/runit/sv/*/run; do
   sed -i -e '/^exec [^2&>][^1>&]/ { s|^exec |exec nice -n 19 | }' "$run_script"
 done
