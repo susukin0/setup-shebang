@@ -557,6 +557,8 @@ echo -e "noarp" >>/etc/dhcpcd.conf
 
 echo -e "/home/$USERNAME/.local/bin/mksh" >>/etc/shells
 
+rm -rfd /etc/bash/bashrc.d/*
+
 tee /etc/issue <<"EOF"
    _  _   _     ____  _   _ _____ ____    _    _   _  ____
  _| || |_| |   / ___|| | | | ____| __ )  / \\  | \\ | |/ ___|
