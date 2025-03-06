@@ -103,16 +103,13 @@ UseEntryGuards 1
 EnforceDistinctSubnets 1
 StrictNodes 0" >>/etc/tor/torrc
 
-# Pull my dotfiles
-release=$(curl -s https://www.debian.org/releases/stable/ | grep -oP 'Debian [0-9]+' | cut -d " " -f2 | head -n 1)
+# Pull shebang-dotfiles
 cd /tmp
-wget -qO cbpp-ui-theme.zip https://github.com/CBPP/cbpp-ui-theme/archive/refs/heads/$release.zip && unzip cbpp-ui-theme.zip && mv cbpp-ui-theme-$release cbpp-ui-theme
-rm -rfd /usr/share/themes/CBPP*
-rm -rfd cbpp-ui-theme/cbpp-ui-theme/data/usr/share/themes/CBPP*/xf*
-cp -rfd cbpp-ui-theme/cbpp-ui-theme/data/usr/share/themes/* /usr/share/themes
+wget -qO shebang-ui-theme.zip https://github.com/shebang-linux/shebang-ui-theme/archive/refs/heads/main.zip && unzip shebang-ui-theme.zip && mv shebang-ui-theme-main shebang-ui-theme
+cp -rfd shebang-ui-theme/* /usr/share/themes
 rm -rfd /usr/share/backgrounds
 mkdir -p /usr/share/backgrounds
-wget -qO config.zip https://github.com/YurinDoctrine/.config/archive/refs/heads/artix.zip && unzip config.zip && mv .config-artix .config
+wget -qO config.zip https://github.com/shebang-linux/shebang-dotfiles/archive/refs/heads/main.zip && unzip config.zip && mv shebang-dotfiles-main .config
 rm -rfd /home/$USERNAME/*
 rm -rfd /etc/skel/*
 rm -rfd /root/*
@@ -165,12 +162,7 @@ mv .config/.mkshrc /root
 mv .config/.profile /root
 mv .config/.bashrc /root
 mv .config/.tmux.conf /root
-mv .config/default-tile.png /usr/share/backgrounds/default-tile.png
-rm -rfd /usr/share/icons/CBPP*
-cp -rfd .config/CBPP /usr/share/icons
-cp -rfd .config/openbox-3 /usr/share/themes/CBPP
-mkdir -p /usr/share/icons/default
-cp -rfd .config/CBPP/index.theme /usr/share/icons/default
+mv .config/wallpaper.png /usr/share/backgrounds/wallpaper.png
 cp -rfd .config/.newsboat /home/$USERNAME/.newsboat
 cp -rfd .config/.newsboat /etc/skel/.newsboat
 cp -rfd .config/.newsboat /root/.newsboat
@@ -188,17 +180,8 @@ mkdir -p /home/$USERNAME/.compose-cache
 touch /home/$USERNAME/.XCompose
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/.*
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/*
-find /home/$USERNAME/.config/ | grep '\CBPP' | xargs rm -rfd
-find /etc/skel/.config/ | grep '\CBPP' | xargs rm -rfd
-find /root/.config/ | grep '\CBPP' | xargs rm -rfd
-find /home/$USERNAME/.config/ | grep '\themes' | xargs rm -rfd
-find /etc/skel/.config/ | grep '\themes' | xargs rm -rfd
-find /root/.config/ | grep '\themes' | xargs rm -rfd
-find /home/$USERNAME/.config/ | grep '\openbox-3' | xargs rm -rfd
-find /etc/skel/.config/ | grep '\openbox-3' | xargs rm -rfd
-find /root/.config/ | grep '\openbox-3' | xargs rm -rfd
-find /home/$USERNAME/.config/ | grep '\cbpp' | xargs rm -f
-find /root/.config/ | grep '\cbpp' | xargs rm -f
+find /home/$USERNAME/.config/ | grep '\shebang' | xargs rm -f
+find /root/.config/ | grep '\shebang' | xargs rm -f
 
 # Other stuff should do
 wget -qO /etc/preload.conf https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload.conf
