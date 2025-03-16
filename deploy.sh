@@ -72,7 +72,7 @@ Include = /etc/pacman.d/mirrorlist-arch
 " >>/etc/pacman.conf
 
 pacman -Sy && pacman-key --init && pacman-key --populate archlinux
-pacman -Sy --needed --noconfirm --disable-download-timeout alsa-utils backlight-$INIT bluez-$INIT dbus-broker doas fwupd gtk-engines gtk-engine-murrine haveged-$INIT jitterentropy libva-mesa-driver macchanger mesa mesa-vdpau openbox pipewire pipewire-alsa pipewire-pulse rsync scx-scheds tmux tor-$INIT torsocks unzip vim vulkan-mesa-layers wayland wget wireplumber wpa_supplicant xdg-desktop-portal-gtk xdg-utils xdg-user-dirs xorg xorg-xinit xterm
+pacman -Sy --needed --noconfirm --disable-download-timeout alsa-utils backlight-$INIT bluez-$INIT dbus-broker doas fwupd gtk-engines gtk-engine-murrine haveged-$INIT jitterentropy libva-mesa-driver macchanger mesa mesa-vdpau openbox pipewire pipewire-alsa pipewire-pulse rsync scx-scheds tmux tor-$INIT torsocks unzip usbutils vim vulkan-mesa-layers wayland wget wireplumber wpa_supplicant xdg-desktop-portal-gtk xdg-utils xdg-user-dirs xorg xorg-xinit xterm
 
 mkdir -p /etc/pacman.d/hooks
 
@@ -178,6 +178,8 @@ cp -rfd .config/* /root/.config
 mkdir -p /var/cache/libx11/compose
 mkdir -p /home/$USERNAME/.compose-cache
 touch /home/$USERNAME/.XCompose
+chown -hR $USERNAME:$USERNAME /usr/share/backgrounds/wallpaper.png
+chown -hR $USERNAME:$USERNAME /usr/share/themes/Shebang*
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/.*
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/*
 find /home/$USERNAME/.config/ | grep '\shebang' | xargs rm -f
