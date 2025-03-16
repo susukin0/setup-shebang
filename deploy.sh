@@ -178,7 +178,7 @@ cp -rfd .config/* /root/.config
 mkdir -p /var/cache/libx11/compose
 mkdir -p /home/$USERNAME/.compose-cache
 touch /home/$USERNAME/.XCompose
-chown -hR $USERNAME:$USERNAME /usr/share/backgrounds/wallpaper.png
+chown -hR $USERNAME:$USERNAME /usr/share/backgrounds
 chown -hR $USERNAME:$USERNAME /usr/share/themes/Shebang*
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/.*
 chown -hR $USERNAME:$USERNAME /home/$USERNAME/*
