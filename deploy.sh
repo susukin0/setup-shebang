@@ -16,7 +16,6 @@ KEYMAP=$KEYMAP" >/etc/vconsole.conf
 echo -e "$HOST" >/etc/hostname
 mkdir -p /etc/conf.d
 echo -e "hostname=$HOST" >/etc/conf.d/hostname
-printf "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\t%s.localdomain\t%s\n" "$HOST" "$HOST" >/etc/hosts
 
 # User
 useradd -m -G users,audio,video,input -s /usr/bin/bash $USERNAME
@@ -189,6 +188,7 @@ find /root/.config/ | grep '\shebang' | xargs rm -f
 wget -qO /etc/preload.conf https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload.conf
 wget -qO /sbin/preload https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload
 chmod +x /sbin/preload
+wget -qO /etc/hosts https://github.com/StevenBlack/hosts/raw/refs/heads/master/alternates/fakenews-gambling-porn-social/hosts
 
 echo -e "permit persist :$USERNAME
 permit nopass $USERNAME as root cmd ip
