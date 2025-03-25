@@ -188,7 +188,7 @@ find /root/.config/ | grep '\shebang' | xargs rm -f
 wget -qO /etc/preload.conf https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload.conf
 wget -qO /sbin/preload https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/preload/preload
 chmod +x /sbin/preload
-wget -qO /etc/hosts https://github.com/StevenBlack/hosts/raw/refs/heads/master/alternates/fakenews-gambling-porn-social/hosts
+wget -qO /etc/hosts https://github.com/StevenBlack/hosts/raw/refs/heads/master/alternates/fakenews-gambling-porn-social/hosts && sed -i -e 's/#.*0.0.0.0/0.0.0.0/g' /etc/hosts
 
 echo -e "permit persist :$USERNAME
 permit nopass $USERNAME as root cmd ip
