@@ -386,11 +386,7 @@ fs.protected_hardlinks=1
 fs.protected_symlinks=1
 fs.protected_fifos=2
 fs.protected_regular=2
-fs.suid_dumpable=0
-abi.vsyscall32=0
-kernel.split_lock_mitigate=0
-kernel.unprivileged_bpf_disabled=1
-kernel.dmesg_restrict=1" >/lib/sysctl.d/99-swappiness.conf
+fs.suid_dumpable=0" >/lib/sysctl.d/99-swappiness.conf
 sysctl -w vm.compact_memory=1 && sysctl -w vm.drop_caches=3 && sysctl -w vm.drop_caches=2
 
 mkdir -p /etc/udev/rules.d
