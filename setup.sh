@@ -162,7 +162,18 @@ fstabgen -U /mnt >/mnt/etc/fstab
 (INIT="$INIT" PART2="$PART2" ROOT_PASSWORD="$ROOT_PASSWORD" ENCRYPTED="$ENCRYPTED" REGION_CITY="$REGION_CITY" HOST="$HOST" USERNAME="$USERNAME" KEYMAP="$KEYMAP" artix-chroot /mnt /bin/bash -c 'bash <(curl -s https://raw.githubusercontent.com/shebang-linux/setup-shebang/main/deploy.sh); exit')
 
 # Save connection
-cp /etc/wpa_supplicant/wpa_supplicant.conf /mnt/etc/wpa_supplicant/wpa_supplicant.conf
+if [[ ! -f /etc/wpa_supplicant/wpa_supplicant.conf ]]; then
+  echo -e 'update_config=1
+ap_scan=1
+fast_reauth=1
+network={
+ssid="replaceme"
+psk="replaceme"
+scan_ssid=1
+}' >/mnt/etc/wpa_supplicant/wpa_supplicant.conf
+else
+  cp /etc/wpa_supplicant/wpa_supplicant.conf /mnt/etc/wpa_supplicant/wpa_supplicant.conf
+fi
 
 # Perform finish
 swapoff -a
